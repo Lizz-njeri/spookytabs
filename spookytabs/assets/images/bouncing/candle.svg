@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120" width="80" height="120">
+  <defs>
+    <radialGradient id="flameGrad" cx="50%" cy="60%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="20%" style="stop-color:#ffff66;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff9900;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#ff3300;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#cc0000;stop-opacity:0.7" />
+    </radialGradient>
+    <linearGradient id="candleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d8d0c0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a89880;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowGrad2" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#ff6600;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#ff0000;stop-opacity:0" />
+    </radialGradient>
+    <filter id="shadow7">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="4"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="flameGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Shadow -->
+  <ellipse cx="40" cy="110" rx="22" ry="6" fill="#000" opacity="0.4"/>
+  
+  <g filter="url(#shadow7)">
+    <!-- Intense glow around flame -->
+    <ellipse cx="40" cy="22" rx="30" ry="35" fill="url(#glowGrad2)" filter="url(#flameGlow)" opacity="0.7">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="0.5s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="35;38;35" dur="0.5s" repeatCount="indefinite"/>
+    </ellipse>
+    
+    <!-- Outer flame - more dramatic -->
+    <path d="M 40 10 Q 33 16 32 26 Q 32 34 40 40 Q 48 34 48 26 Q 48 16 40 10 Z" 
+          fill="url(#flameGrad)">
+      <animate attributeName="d" 
+               values="M 40 10 Q 33 16 32 26 Q 32 34 40 40 Q 48 34 48 26 Q 48 16 40 10 Z;
+                       M 40 8 Q 31 15 30 25 Q 30 33 40 39 Q 50 33 50 25 Q 50 15 40 8 Z;
+                       M 40 11 Q 34 17 33 27 Q 33 35 40 41 Q 47 35 47 27 Q 47 17 40 11 Z;
+                       M 40 10 Q 33 16 32 26 Q 32 34 40 40 Q 48 34 48 26 Q 48 16 40 10 Z" 
+               dur="0.4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Inner bright flame -->
+    <path d="M 40 18 Q 37 22 37 28 Q 37 33 40 35 Q 43 33 43 28 Q 43 22 40 18 Z" 
+          fill="#ffffff" opacity="0.9">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="0.4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Charred wick -->
+    <rect x="39" y="35" width="2" height="12" fill="#000000"/>
+    <ellipse cx="40" cy="35" rx="2" ry="1" fill="#1a1a1a"/>
+    
+    <!-- Melted, dripping candle body -->
+    <path d="M 30 47 L 30 90 Q 30 93 33 93 L 47 93 Q 50 93 50 90 L 50 47 Z" fill="url(#candleGrad)"/>
+    
+    <!-- Heavy wax drips -->
+    <path d="M 31 52 Q 28 58 29 65 L 30 65" stroke="#c0b090" stroke-width="3" fill="none" opacity="0.9"/>
+    <path d="M 49 56 Q 52 64 51 72 L 50 72" stroke="#c0b090" stroke-width="3" fill="none" opacity="0.9"/>
+    <path d="M 35 60 Q 33 66 34 72" stroke="#c0b090" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M 45 58 Q 47 65 46 70" stroke="#c0b090" stroke-width="2" fill="none" opacity="0.8"/>
+    
+    <!-- Wax pools -->
+    <ellipse cx="29" cy="65" rx="2" ry="3" fill="#b0a080" opacity="0.8"/>
+    <ellipse cx="51" cy="72" rx="2" ry="3" fill="#b0a080" opacity="0.8"/>
+    
+    <!-- Candle texture/cracks -->
+    <path d="M 35 55 Q 36 65 35 75" stroke="#988870" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M 45 58 Q 44 68 45 78" stroke="#988870" stroke-width="0.5" fill="none" opacity="0.5"/>
+    
+    <!-- Candle highlights -->
+    <rect x="32" y="48" width="2" height="42" fill="#ffffff" opacity="0.15"/>
+    
+    <!-- Dark iron base -->
+    <ellipse cx="40" cy="93" rx="14" ry="5" fill="#3a3a3a"/>
+    <rect x="26" y="93" width="28" height="10" fill="#2a2a2a"/>
+    <ellipse cx="40" cy="103" rx="14" ry="5" fill="#1a1a1a"/>
+    
+    <!-- Base details -->
+    <ellipse cx="40" cy="93" rx="12" ry="4" fill="none" stroke="#4a4a4a" stroke-width="0.5"/>
+  </g>
+</svg>

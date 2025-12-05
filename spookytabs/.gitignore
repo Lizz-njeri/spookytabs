@@ -1,0 +1,24 @@
+# Development
+.DS_Store
+*.log
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Optional: Ignore sound files if they're large
+# Uncomment if you want to keep sounds out of git
+# assets/sounds/**/*.mp3
+# !assets/sounds/**/.gitkeep

@@ -1,0 +1,100 @@
+/* Content script styles - applied to all pages */
+
+/* Vignette overlay */
+body.spooky-vignette::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999999;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease;
+}
+
+body.spooky-disabled.spooky-vignette::before {
+  opacity: 0;
+}
+
+/* Cursor trail */
+.spooky-cursor-trail {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  opacity: 0.6;
+  animation: cursorFade 0.8s ease-out forwards;
+}
+
+@keyframes cursorFade {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Particle container */
+.spooky-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999997;
+  overflow: hidden;
+}
+
+.spooky-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Ghostly theme particles */
+.spooky-particle.ghostly {
+  background: rgba(255, 255, 255, 0.3);
+  animation: floatGhostly 10s infinite ease-in-out;
+}
+
+@keyframes floatGhostly {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-30px) translateX(10px); }
+}
+
+/* Witchy theme particles (fireflies) */
+.spooky-particle.witchy {
+  background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+  animation: firefly 3s infinite ease-in-out;
+}
+
+@keyframes firefly {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Mansion theme particles (dust) */
+.spooky-particle.mansion {
+  background: rgba(139, 115, 85, 0.4);
+  animation: dustFloat 15s infinite linear;
+}
+
+@keyframes dustFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Cosmic theme particles (void) */
+.spooky-particle.cosmic {
+  background: radial-gradient(circle, #9d4edd 0%, transparent 70%);
+  animation: voidPulse 4s infinite ease-in-out;
+}
+
+@keyframes voidPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 1; }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Witchy Forest",
+  "description": "Deep purples and forest greens with mystical fireflies",
+  "colors": {
+    "primary": "#1a0f2e",
+    "secondary": "#2d1b4e",
+    "accent": "#8b4f9e",
+    "highlight": "#d4af37",
+    "glow": "rgba(139, 79, 158, 0.4)"
+  },
+  "fonts": {
+    "primary": "'Trebuchet MS', sans-serif",
+    "accent": "'Brush Script MT', cursive"
+  },
+  "particles": {
+    "type": "fireflies",
+    "color": "#d4af37",
+    "opacity": 0.6,
+    "count": 25
+  },
+  "effects": {
+    "vignette": true,
+    "cursorTrail": true,
+    "screenShake": false
+  }
+}

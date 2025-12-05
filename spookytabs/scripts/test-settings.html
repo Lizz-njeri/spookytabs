@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpookyTabs Settings Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #e8e8e8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { color: #8b4f9e; }
+    .test-section {
+      background: #2a2a2a;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #3a3a3a;
+    }
+    button {
+      background: #8b4f9e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #a366b8;
+    }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+    pre {
+      background: #0a0a0a;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>SpookyTabs Settings Test</h1>
+  <p>This page helps test the extension's settings functionality.</p>
+  
+  <div class="test-section">
+    <h2>1. Check Extension Installation</h2>
+    <button onclick="checkExtension()">Check Extension</button>
+    <div id="extensionStatus"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>2. Test Storage</h2>
+    <button onclick="testStorage()">Test Storage</button>
+    <div id="storageStatus"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>3. Current Settings</h2>
+    <button onclick="loadSettings()">Load Settings</button>
+    <button onclick="resetSettings()">Reset to Defaults</button>
+    <pre id="currentSettings">Click "Load Settings" to view</pre>
+  </div>
+  
+  <div class="test-section">
+    <h2>4. Test Setting Changes</h2>
+    <button onclick="toggleEnabled()">Toggle Enabled</button>
+    <button onclick="changeTheme()">Change Theme</button>
+    <button onclick="changeIntensity()">Set Intensity to 75</button>
+    <div id="changeStatus"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>5. Visual Effects Test</h2>
+    <button onclick="testVignette()">Toggle Vignette</button>
+    <button onclick="testParticles()">Toggle Particles</button>
+    <button onclick="testCursorTrail()">Toggle Cursor Trail</button>
+    <div id="effectsStatus"></div>
+  </div>
+
+  <script>
+    function checkExtension() {
+      const status = document.getElementById('extensionStatus');
+      if (typeof chrome !== 'undefined' && chrome.storage) {
+        status.innerHTML = '<p class="success">✓ Extension API available</p>';
+      } else {
+        status.innerHTML = '<p class="error">✗ Extension API not available. Make sure this is loaded as an extension.</p>';
+      }
+    }
+    
+    async function testStorage() {
+      const status = document.getElementById('storageStatus');
+      try {
+        // Test write
+        await chrome.storage.local.set({ testKey: 'testValue' });
+        
+        // Test read
+        const result = await chrome.storage.local.get('testKey');
+        
+        if (result.testKey === 'testValue') {
+          status.innerHTML = '<p class="success">✓ Storage working correctly</p>';
+          
+          // Clean up
+          await chrome.storage.local.remove('testKey');
+        } else {
+          status.innerHTML = '<p class="error">✗ Storage read failed</p>';
+        }
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Storage error: ${error.message}</p>`;
+      }
+    }
+    
+    async function loadSettings() {
+      const display = document.getElementById('currentSettings');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        if (result.spookySettings) {
+          display.textContent = JSON.stringify(result.spookySettings, null, 2);
+        } else {
+          display.textContent = 'No settings found. Extension may not be initialized.';
+        }
+      } catch (error) {
+        display.textContent = `Error: ${error.message}`;
+      }
+    }
+    
+    async function resetSettings() {
+      try {
+        const defaults = {
+          enabled: true,
+          theme: 'ghostly',
+          intensity: 50,
+          soundEnabled: true,
+          masterVolume: 70,
+          ambientVolume: 50,
+          effectsVolume: 80,
+          visualEffects: {
+            particles: true,
+            vignette: true,
+            cursorTrail: false
+          }
+        };
+        
+        await chrome.storage.local.set({ spookySettings: defaults });
+        alert('Settings reset to defaults!');
+        loadSettings();
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+    
+    async function toggleEnabled() {
+      const status = document.getElementById('changeStatus');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || {};
+        settings.enabled = !settings.enabled;
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Enabled set to: ${settings.enabled}</p>`;
+        loadSettings();
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function changeTheme() {
+      const status = document.getElementById('changeStatus');
+      const themes = ['ghostly', 'witchy', 'mansion', 'cosmic'];
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || {};
+        const currentIndex = themes.indexOf(settings.theme || 'ghostly');
+        const nextIndex = (currentIndex + 1) % themes.length;
+        settings.theme = themes[nextIndex];
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Theme changed to: ${settings.theme}</p>`;
+        loadSettings();
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function changeIntensity() {
+      const status = document.getElementById('changeStatus');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || {};
+        settings.intensity = 75;
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Intensity set to: 75</p>`;
+        loadSettings();
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function testVignette() {
+      const status = document.getElementById('effectsStatus');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || { visualEffects: {} };
+        if (!settings.visualEffects) settings.visualEffects = {};
+        settings.visualEffects.vignette = !settings.visualEffects.vignette;
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Vignette: ${settings.visualEffects.vignette}</p>`;
+        
+        // Apply effect to this page
+        if (settings.visualEffects.vignette) {
+          document.body.classList.add('spooky-vignette');
+        } else {
+          document.body.classList.remove('spooky-vignette');
+        }
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function testParticles() {
+      const status = document.getElementById('effectsStatus');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || { visualEffects: {} };
+        if (!settings.visualEffects) settings.visualEffects = {};
+        settings.visualEffects.particles = !settings.visualEffects.particles;
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Particles: ${settings.visualEffects.particles}</p>`;
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function testCursorTrail() {
+      const status = document.getElementById('effectsStatus');
+      try {
+        const result = await chrome.storage.local.get('spookySettings');
+        const settings = result.spookySettings || { visualEffects: {} };
+        if (!settings.visualEffects) settings.visualEffects = {};
+        settings.visualEffects.cursorTrail = !settings.visualEffects.cursorTrail;
+        
+        await chrome.storage.local.set({ spookySettings: settings });
+        status.innerHTML = `<p class="success">✓ Cursor Trail: ${settings.visualEffects.cursorTrail}</p>`;
+      } catch (error) {
+        status.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+      }
+    }
+    
+    // Auto-check on load
+    window.addEventListener('load', () => {
+      checkExtension();
+      loadSettings();
+    });
+  </script>
+</body>
+</html>

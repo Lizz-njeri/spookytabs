@@ -1,0 +1,29 @@
+{
+  "name": "spookytabs",
+  "version": "1.0.0",
+  "description": "Transform your browser into a mysterious, immersive horror-themed experience",
+  "scripts": {
+    "test": "bash scripts/test.sh",
+    "build": "bash scripts/build.sh",
+    "icons": "open scripts/generate-icons.html"
+  },
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "horror",
+    "spooky",
+    "halloween",
+    "theme",
+    "new-tab"
+  ],
+  "author": "SpookyTabs Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/spookytabs"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/spookytabs/issues"
+  },
+  "homepage": "https://github.com/yourusername/spookytabs#readme"
+}

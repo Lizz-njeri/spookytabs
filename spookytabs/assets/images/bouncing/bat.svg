@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" width="120" height="100">
+  <defs>
+    <radialGradient id="batGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="batEyeGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#ff0000;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#cc0000;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#660000;stop-opacity:0.3" />
+    </radialGradient>
+    <filter id="shadow4">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="3" dy="5"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Shadow -->
+  <ellipse cx="60" cy="90" rx="45" ry="8" fill="#000" opacity="0.4"/>
+  
+  <g filter="url(#shadow4)">
+    <!-- Left wing - more dramatic -->
+    <path d="M 60 45 Q 40 25 18 32 Q 5 38 8 50 Q 12 58 25 54 Q 32 52 40 48 Q 50 45 60 45 Z" 
+          fill="url(#batGrad)" stroke="#000000" stroke-width="1.5"/>
+    
+    <!-- Left wing membrane details -->
+    <path d="M 60 45 Q 48 35 35 38" stroke="#1a1a1a" stroke-width="1" fill="none"/>
+    <path d="M 55 46 Q 42 40 28 44" stroke="#1a1a1a" stroke-width="0.8" fill="none"/>
+    <path d="M 50 47 Q 38 45 22 48" stroke="#1a1a1a" stroke-width="0.8" fill="none"/>
+    
+    <!-- Right wing - more dramatic -->
+    <path d="M 60 45 Q 80 25 102 32 Q 115 38 112 50 Q 108 58 95 54 Q 88 52 80 48 Q 70 45 60 45 Z" 
+          fill="url(#batGrad)" stroke="#000000" stroke-width="1.5"/>
+    
+    <!-- Right wing membrane details -->
+    <path d="M 60 45 Q 72 35 85 38" stroke="#1a1a1a" stroke-width="1" fill="none"/>
+    <path d="M 65 46 Q 78 40 92 44" stroke="#1a1a1a" stroke-width="0.8" fill="none"/>
+    <path d="M 70 47 Q 82 45 98 48" stroke="#1a1a1a" stroke-width="0.8" fill="none"/>
+    
+    <!-- Wing claws -->
+    <circle cx="20" cy="38" r="2" fill="#1a1a1a"/>
+    <circle cx="100" cy="38" r="2" fill="#1a1a1a"/>
+    
+    <!-- Body -->
+    <ellipse cx="60" cy="52" rx="9" ry="14" fill="url(#batGrad)"/>
+    
+    <!-- Head -->
+    <circle cx="60" cy="40" r="8" fill="url(#batGrad)"/>
+    
+    <!-- Pointed ears -->
+    <path d="M 55 34 L 52 26 L 57 32 Z" fill="#1a1a1a"/>
+    <path d="M 65 34 L 68 26 L 63 32 Z" fill="#1a1a1a"/>
+    
+    <!-- Fangs -->
+    <path d="M 58 44 L 57 48 L 59 44 Z" fill="#ffffff" opacity="0.9"/>
+    <path d="M 62 44 L 63 48 L 61 44 Z" fill="#ffffff" opacity="0.9"/>
+    
+    <!-- Intense glowing eyes -->
+    <circle cx="56" cy="39" r="3" fill="url(#batEyeGlow)" filter="url(#redGlow)">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="64" cy="39" r="3" fill="url(#batEyeGlow)" filter="url(#redGlow)">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Eye glow aura -->
+    <circle cx="56" cy="39" r="5" fill="#ff0000" opacity="0.2">
+      <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="64" cy="39" r="5" fill="#ff0000" opacity="0.2">
+      <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Clawed feet -->
+    <path d="M 56 66 L 54 72 M 54 72 L 52 71 M 54 72 L 53 74" stroke="#1a1a1a" stroke-width="1.5"/>
+    <path d="M 64 66 L 66 72 M 66 72 L 68 71 M 66 72 L 67 74" stroke="#1a1a1a" stroke-width="1.5"/>
+  </g>
+</svg>

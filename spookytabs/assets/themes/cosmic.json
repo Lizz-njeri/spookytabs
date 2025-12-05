@@ -1,0 +1,26 @@
+{
+  "name": "Cosmic Horror",
+  "description": "Deep space blacks and eldritch purples with reality distortions",
+  "colors": {
+    "primary": "#0d0208",
+    "secondary": "#1a0f1e",
+    "accent": "#6a0572",
+    "highlight": "#9d4edd",
+    "glow": "rgba(157, 78, 221, 0.5)"
+  },
+  "fonts": {
+    "primary": "'Consolas', monospace",
+    "accent": "'Impact', sans-serif"
+  },
+  "particles": {
+    "type": "void",
+    "color": "#9d4edd",
+    "opacity": 0.5,
+    "count": 35
+  },
+  "effects": {
+    "vignette": true,
+    "cursorTrail": true,
+    "screenShake": true
+  }
+}

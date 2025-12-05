@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+  <div class="background-layer"></div>
+  
+  <!-- Spider webs -->
+  <div class="spider-web web-top-left"></div>
+  <div class="spider-web web-top-right"></div>
+  <div class="spider-web web-bottom-left"></div>
+  <div class="spider-web web-bottom-right"></div>
+  
+  <!-- Bouncing graphics -->
+  <div class="bouncing-graphics" id="bouncingGraphics"></div>
+  
+  <div class="particles-container" id="particlesContainer"></div>
+  
+  <div class="content-wrapper">
+    <div class="search-container">
+      <form id="searchForm" action="https://www.google.com/search" method="GET">
+        <input 
+          type="text" 
+          name="q" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search the void..."
+          autocomplete="off"
+        >
+        <button type="submit" class="search-btn">🔍</button>
+      </form>
+    </div>
+    
+    <div class="whisper-container">
+      <p class="whisper-text" id="whisperText"></p>
+    </div>
+    
+    <div class="quick-links" id="quickLinks">
+      <!-- Quick links will be populated by JS -->
+    </div>
+  </div>
+  
+  <div class="settings-toggle" id="settingsToggle" title="Open Settings">⚙️</div>
+  
+  <script src="../utils/storage.js"></script>
+  <script src="../utils/themes.js"></script>
+  <script src="../utils/audio.js"></script>
+  <script src="newtab.js"></script>
+</body>
+</html>

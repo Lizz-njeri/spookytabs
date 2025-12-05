@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" width="120" height="100">
+  <defs>
+    <radialGradient id="eyeballGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#f0f0e8;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#d8d8d0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b0b0a8;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="irisGrad" cx="40%" cy="40%">
+      <stop offset="0%" style="stop-color:#cc0000;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#990000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="pupilGrad" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    <radialGradient id="glowGrad3" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#ff0000;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#cc0000;stop-opacity:0" />
+    </radialGradient>
+    <filter id="shadow8">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="3" dy="5"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="redGlowEye">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Shadow -->
+  <ellipse cx="60" cy="90" rx="45" ry="8" fill="#000" opacity="0.5"/>
+  
+  <!-- Intense outer glow -->
+  <ellipse cx="60" cy="50" rx="55" ry="38" fill="url(#glowGrad3)" filter="url(#redGlowEye)" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite"/>
+  </ellipse>
+  
+  <g filter="url(#shadow8)">
+    <!-- Bloodshot eyeball -->
+    <ellipse cx="60" cy="50" rx="45" ry="32" fill="url(#eyeballGrad)"/>
+    
+    <!-- Heavy blood vessels -->
+    <path d="M 18 42 Q 30 38 45 42" stroke="#cc0000" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 102 42 Q 90 38 75 42" stroke="#cc0000" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 20 48 Q 35 45 50 48" stroke="#cc0000" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M 100 48 Q 85 45 70 48" stroke="#cc0000" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M 25 55 Q 40 58 55 55" stroke="#cc0000" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M 95 55 Q 80 58 65 55" stroke="#cc0000" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M 30 60 Q 45 62 60 60" stroke="#cc0000" stroke-width="1" fill="none" opacity="0.5"/>
+    
+    <!-- Branching vessels -->
+    <path d="M 25 45 L 22 42 M 25 45 L 23 48" stroke="#990000" stroke-width="1" opacity="0.5"/>
+    <path d="M 95 45 L 98 42 M 95 45 L 97 48" stroke="#990000" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Red demonic iris -->
+    <circle cx="60" cy="50" r="20" fill="url(#irisGrad)"/>
+    
+    <!-- Iris details - more menacing -->
+    <circle cx="60" cy="50" r="20" fill="none" stroke="#660000" stroke-width="1" opacity="0.8"/>
+    <path d="M 60 30 L 60 50" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 77 42" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 77 58" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 43 42" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 43 58" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 70 50" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    <path d="M 60 50 L 50 50" stroke="#330000" stroke-width="1" opacity="0.6"/>
+    
+    <!-- Dilated pupil -->
+    <circle cx="60" cy="50" r="12" fill="url(#pupilGrad)">
+      <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Minimal highlight - more sinister -->
+    <ellipse cx="54" cy="44" rx="4" ry="5" fill="#ffffff" opacity="0.4"/>
+    
+    <!-- Veiny eyelids -->
+    <path d="M 15 50 Q 60 28 105 50" stroke="#b0a0a0" stroke-width="3" fill="none" opacity="0.5"/>
+    <path d="M 15 50 Q 60 72 105 50" stroke="#b0a0a0" stroke-width="3" fill="none" opacity="0.5"/>
+    
+    <!-- Outer rim with veins -->
+    <ellipse cx="60" cy="50" rx="45" ry="32" fill="none" stroke="#8b0000" stroke-width="1.5" opacity="0.6"/>
+    
+    <!-- Pulsing red glow from iris -->
+    <circle cx="60" cy="50" r="24" fill="#ff0000" opacity="0.2">
+      <animate attributeName="opacity" values="0.1;0.3;0.1" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="24;28;24" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

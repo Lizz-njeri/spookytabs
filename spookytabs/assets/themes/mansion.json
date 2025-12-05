@@ -1,0 +1,26 @@
+{
+  "name": "Abandoned Mansion",
+  "description": "Dusty browns and faded reds with Victorian atmosphere",
+  "colors": {
+    "primary": "#1c1410",
+    "secondary": "#2d2318",
+    "accent": "#8b4513",
+    "highlight": "#cd853f",
+    "glow": "rgba(205, 133, 63, 0.3)"
+  },
+  "fonts": {
+    "primary": "'Garamond', serif",
+    "accent": "'Palatino', serif"
+  },
+  "particles": {
+    "type": "dust",
+    "color": "#8b7355",
+    "opacity": 0.4,
+    "count": 40
+  },
+  "effects": {
+    "vignette": true,
+    "cursorTrail": false,
+    "screenShake": false
+  }
+}
